@@ -26,13 +26,17 @@ export class PageObjectsManager {
         await link.evaluate((el) => el.removeAttribute('target'))
         await link.click()
     }
-
     async goToAjaxLoader(){
         await this.page.goto("https://webdriveruniversity.com/")
         const link = this.page.locator('#ajax-loader')
         await link.evaluate((el) => el.removeAttribute('target'))
         await link.click()
     }
-
+    async goToDatepickerPage(){
+        await this.page.goto("https://webdriveruniversity.com/")
+        const link = this.page.locator('#datepicker')
+        await link.evaluate((el) => el.removeAttribute('target'))
+        await link.click()
+    }
 }
 module.exports = { PageObjectsManager };

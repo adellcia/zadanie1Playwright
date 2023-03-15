@@ -4,14 +4,13 @@ const { ContactUsPage } = require('../pageobjects/contactUs')
 const { DropCheckRadio } = require('../pageobjects/dropCheckRadio')
 const { AutocompleteTF } = require('../pageobjects/autocompleteTF')
 const { AjaxLoader } = require('../pageobjects/ajaxLoader')
-
+const { Datepicker } = require('../pageobjects/datepicker')
 
 const firstName = ('Brad')
 const lastName = ('Pitt')
 const email = ('brad.pitt@wp.pl')
 const comments = ('How to get to the station?')
 const food = ('chi')
-
 
 test.describe('Contact us page', () => {
     test.beforeEach(async ({ page }) => {
@@ -78,7 +77,7 @@ test.describe('Autocomplete TextField ', () => {
 })
 
 test.describe('AjaxLoader', () => {
-    test.beforeEach(async ({ page}) => {
+    test.beforeEach(async ({ page }) => {
         const pageObjectsManager = new PageObjectsManager(page)
         await pageObjectsManager.goToAjaxLoader()
     })
@@ -86,5 +85,17 @@ test.describe('AjaxLoader', () => {
         const ajaxLoader = new AjaxLoader(page)
         await ajaxLoader.waitForAjax()
         await (expect(page.locator('.modal-title')).toContainText('Well Done For Waiting....!!!'))
+    })
+})
+
+test.describe('Datepicker', () => {
+    test.beforeEach(async ({ page }) => {
+        const pageObjectsManager = new PageObjectsManager(page)
+        await pageObjectsManager.goToDatepickerPage()
+    })
+    test.only('datepicker', async ({ page }) => {
+        const datepicker = new Datepicker(page)
+        await datepicker.selectDatepicker()
+        
     })
 })
